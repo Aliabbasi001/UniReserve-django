@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="فرم ساخت حساب کاربری سامانه UniReserve">
+  <title>ثبت‌نام | UniReserve</title>
+
+  <!-- MDUI 2 از طریق CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+  <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; font-family: Tahoma, Arial, sans-serif;
+      background: #f5f7fb; color: #202638;
+    }
+    header {
+      background: #fff; border-bottom: 1px solid #e4e8f0;
+      padding: 18px 6%; display: flex; justify-content: space-between; align-items: center;
+    }
+    mdui-select::part(text-field__container) {
+      background-color: #e8efff;
+    }
+    mdui-text-field {
+      width: 100%;
+    }
+
+    mdui-text-field::part(container) {
+      background-color: #e8efff;
+    }
+    .brand { color: #3157a4; font-size: 1.2rem; font-weight: 700; }
+    .brand small { display: block; font-size: .78rem; color: #68738a; margin-top: 5px; font-weight: 400; }
+    main { width: min(620px, 92%); margin: 38px auto; }
+    .intro { margin-bottom: 22px; }
+    h1 { margin: 0 0 10px; font-size: 1.6rem; }
+    .intro p { margin: 0; color: #68738a; line-height: 1.9; }
+    .card { background: #fff; border: 1px solid #e5e9f1; border-radius: 18px; padding: 26px; box-shadow: 0 8px 28px rgba(30,48,80,.05); }
+    .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 18px; }
+    .full { grid-column: 1 / -1; }
+    mdui-text-field, mdui-select { width: 100%; }
+    .role-options { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 10px; }
+    .role-title { font-size: .92rem; color: #4b5568; margin-bottom: 8px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+    .hint { color: #6c7689; font-size: .82rem; line-height: 1.8; margin-top: 18px; }
+    footer { text-align: center; color: #7b8495; font-size: .8rem; padding: 18px; }
+    @media (max-width: 560px) {
+      .fields { grid-template-columns: 1fr; }
+      .full { grid-column: auto; }
+      .card { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">UniReserve <small>سامانه مدیریت امکانات دانشگاه</small></div>
+    <mdui-button variant="text" href="reservation.html">فرم رزرو</mdui-button>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1>ورود به حساب کاربری</h1>
+      <p>برای رزرو امکانات دانشگاه، اطلاعات خود را در فرم زیر وارد کنید.</p>
+    </section>
+
+    <section class="card">
+      <form id="login-form">
+        <div class="fields">
+          <!-- <div>
+            <mdui-text-field label="نام" name="first_name"
+              autocomplete="given-name" required clearable></mdui-text-field>
+          </div> -->
+          <!-- <div>
+            <mdui-text-field label="نام خانوادگی" name="last_name"
+              autocomplete="family-name" required clearable></mdui-text-field>
+          </div> -->
+          <!-- <div class="full">
+            <mdui-text-field label="ایمیل دانشگاهی" name="email"
+              type="email" autocomplete="email"
+              placeholder="name@example.com" required></mdui-text-field>
+          </div> -->
+          <div class="full">
+            <mdui-text-field label="نام کربری :" name="username"
+              required></mdui-text-field>
+          </div>
+          <div class="full">
+            <mdui-text-field label="رمز عبور" name="password"
+              type="password" toggle-password minlength="8"
+              autocomplete="new-password" helper="حداقل ۸ نویسه" required></mdui-text-field>
+          </div>
+          <!-- <div>
+            <mdui-text-field label="تکرار رمز عبور" name="confirm_password"
+              type="password" toggle-password minlength="8"
+              autocomplete="new-password" required></mdui-text-field>
+          </div> -->
+          <div class="full">
+            <div class="role-title">نوع حساب کاربری</div>
+            <div class="role-options">
+              <mdui-radio name="role" value="student" checked>دانشجو</mdui-radio>
+              <mdui-radio name="role" value="professor">استاد</mdui-radio>
+              <mdui-radio name="role" value="staff">کارمند دانشگاه</mdui-radio>
+            </div>
+          </div>
+          <div class="full">
+            <mdui-select label="دانشکده / واحد" name="faculty" required>
+              <mdui-menu-item value="computer">مهندسی کامپیوتر</mdui-menu-item>
+              <mdui-menu-item value="computer">مهاجر</mdui-menu-item>
+              <mdui-menu-item value="computer">سروش</mdui-menu-item>
+              <mdui-menu-item value="engineering">سایر رشته‌های فنی و مهندسی</mdui-menu-item>
+              <mdui-menu-item value="humanities">علوم انسانی</mdui-menu-item>
+              <mdui-menu-item value="basic_sciences">علوم پایه</mdui-menu-item>
+              <mdui-menu-item value="other">سایر</mdui-menu-item>
+            </mdui-select>
+          </div>
+          <div class="full">
+            <mdui-checkbox name="terms" value="accepted" required>
+              قوانین و شرایط استفاده از سامانه را می‌پذیرم.
+            </mdui-checkbox>
+          </div>
+        </div>
+
+        <div class="actions">
+          <mdui-button type="submit" variant="filled">ورود به  حساب</mdui-button>
+          <mdui-button type="reset" variant="outlined">پاک کردن فرم</mdui-button>
+        </div>
+        <p class="hint">این صفحه تسته داداشم سخت نگیر :)</p>
+      </form>
+    </section>
+  </main>
+
+  <footer>UniReserve · سامانه مدیریت امکانات و تجهیزات دانشگاه</footer>
+
+  <script>
+    const form = document.getElementById('login-form');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const password = form.elements.password.value;
+      // const confirmPassword = form.elements.confirm_password.value;
+
+      // if (password !== confirmPassword) {
+      //   mdui.snackbar({ message: 'رمز عبور و تکرار آن یکسان نیستند.' });
+      //   return;
+      // }
+
+      mdui.snackbar({ message: 'اعتبارسنجی فرم انجام شد به صورت تست  ' });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="فرم درخواست رزرو امکانات و تجهیزات دانشگاه">
+  <title>درخواست رزرو | UniReserve</title>
+
+  <!-- MDUI 2 از طریق CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+  <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --page-bg: #f5f7fb;
+      --brand: #3157a4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: var(--page-bg);
+      color: #202638;
+    }
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #e4e8f0;
+      padding: 18px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    mdui-select::part(text-field__container) {
+      background-color: #e8efff;
+    }
+    mdui-text-field {
+      width: 100%;
+    }
+
+  mdui-text-field::part(container) {
+    background-color: #e8efff;
+  }
+    .brand { font-size: 1.2rem; font-weight: 700; color: var(--brand); }
+    .brand small { display: block; font-size: .78rem; color: #68738a; margin-top: 5px; font-weight: 400; }
+    main { width: min(760px, 92%); margin: 36px auto; }
+    .intro { margin-bottom: 22px; }
+    .intro h1 { margin: 0 0 10px; font-size: 1.65rem; }
+    .intro p { color: #68738a; line-height: 1.9; margin: 0; }
+    .form-card {
+      background: #fff; border: 1px solid #e5e9f1; border-radius: 18px;
+      padding: 26px; box-shadow: 0 8px 28px rgba(30, 48, 80, .05);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 18px; }
+    .field { min-width: 0; }
+    .full { grid-column: 1 / -1; }
+    mdui-text-field, mdui-select { width: 100%; }
+    .section-title { font-size: 1rem; margin: 0 0 18px; color: #263a67; }
+    .checks { display: flex; flex-wrap: wrap; gap: 16px 22px; padding-top: 4px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .note { color: #6c7689; font-size: .83rem; line-height: 1.8; margin-top: 18px; }
+    footer { text-align: center; color: #7b8495; font-size: .8rem; padding: 18px; }
+    @media (max-width: 600px) {
+      .form-card { padding: 18px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .full { grid-column: auto; }
+      .intro h1 { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">UniReserve <small>سامانه مدیریت امکانات دانشگاه</small></div>
+    <mdui-button variant="text" href="login.html">ثبت‌نام کاربر</mdui-button>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1>درخواست رزرو امکانات</h1>
+      <p>فرم زیر را تکمیل کنید تا درخواست رزرو فضای آموزشی یا تجهیزات دانشگاه ثبت شود.</p>
+    </section>
+
+    <section class="form-card">
+      <h2 class="section-title">اطلاعات درخواست</h2>
+
+      <form id="reservation-form">
+        <div class="form-grid">
+          <div class="field">
+            <mdui-text-field label="نام و نام خانوادگی" name="full_name" value="علی عباسی" readonly
+            ></mdui-text-field>
+          </div>
+          
+
+          <div class="field">
+            <mdui-text-field label="شماره دانشجویی / پرسنلی" name="university_id"
+              value="041100492232" readonly></mdui-text-field>
+          </div>
+
+          <div class="field">
+            <mdui-select label="نوع منبع" name="resource_type" required>
+              <mdui-menu-item value="study_room">اتاق مطالعه</mdui-menu-item>
+              <mdui-menu-item value="classroom">کلاس یا فضای آموزشی</mdui-menu-item>
+              <mdui-menu-item value="lab">آزمایشگاه</mdui-menu-item>
+              <mdui-menu-item value="projector">ویدئوپروژکتور</mdui-menu-item>
+              <mdui-menu-item value="other_equipment">سایر تجهیزات</mdui-menu-item>
+            </mdui-select>
+          </div>
+
+          <div class="field">
+            <mdui-select label="تعداد افراد / ظرفیت موردنیاز" name="capacity" required>
+              <mdui-menu-item value="1">۱ نفر</mdui-menu-item>
+              <mdui-menu-item value="2-5">۲ تا ۵ نفر</mdui-menu-item>
+              <mdui-menu-item value="6-10">۶ تا ۱۰ نفر</mdui-menu-item>
+              <mdui-menu-item value="11+">بیش از ۱۰ نفر</mdui-menu-item>
+            </mdui-select>
+          </div>
+
+          <div class="field">
+            <mdui-text-field label="تاریخ رزرو" name="reservation_date"
+              type="date" required></mdui-text-field>
+          </div>
+
+          <div class="field">
+            <mdui-text-field label="ساعت شروع" name="start_time"
+              type="time" required></mdui-text-field>
+          </div>
+
+          <div class="field">
+            <mdui-text-field label="ساعت پایان" name="end_time"
+              type="time" required></mdui-text-field>
+          </div>
+
+          <div class="field">
+            <mdui-text-field label="ایمیل دانشگاهی (اختیاری)" name="email"
+              type="email" placeholder="name@example.com"></mdui-text-field>
+          </div>
+
+          <div class="field full">
+            <mdui-text-field label="توضیحات و علت رزرو" name="description"
+              rows="3" autosize maxlength="500"
+              placeholder="هدف استفاده یا تجهیزات موردنیاز را بنویسید."></mdui-text-field>
+          </div>
+
+          <div class="field full">
+            <div class="checks">
+              <mdui-checkbox name="needs_accessibility" value="yes">
+                به امکانات دسترس‌پذیری نیاز دارم
+              </mdui-checkbox>
+              <mdui-checkbox name="accept_rules" value="yes" required>
+                قوانین استفاده از امکانات دانشگاه را می‌پذیرم
+              </mdui-checkbox>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <mdui-button type="submit" variant="filled">ثبت درخواست رزرو</mdui-button>
+          <mdui-button type="reset" variant="outlined">پاک کردن فرم</mdui-button>
+        </div>
+        <p class="note">این صفحه تسته داداشم سخت نگیر :)</p>
+      </form>
+    </section>
+  </main>
+
+  <footer>UniReserve · سامانه مدیریت امکانات و تجهیزات دانشگاه</footer>
+
+  <script>
+    const form = document.getElementById('reservation-form');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const start = form.elements.start_time.value;
+      const end = form.elements.end_time.value;
+
+      if (start && end && end <= start) {
+        mdui.snackbar({ message: 'ساعت پایان باید بعد از ساعت شروع باشد.' });
+        return;
+      }
+
+      if (!form.elements.accept_rules.checked) {
+        mdui.snackbar({ message: 'لطفاً قوانین استفاده را تأیید کنید.' });
+        return;
+      }
+
+      mdui.snackbar({ message: 'اعتبارسنجی فرم انجام شد؛ برای ثبت واقعی باید به Django متصل شود.' });
+    });
+  </script>
+</body>
+</html>
